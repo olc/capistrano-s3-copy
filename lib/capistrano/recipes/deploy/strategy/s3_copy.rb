@@ -9,15 +9,6 @@ module Capistrano
 
         def initialize(config={})
           super(config)
-
-          ###s3cmd_vars = []
-          ###["aws_access_key_id", "aws_secret_access_key"].each do |var|
-          ###  value = configuration[var.to_sym]
-          ###  raise Capistrano::Error, "Missing configuration[:#{var}] setting" if value.nil?
-          ###  s3cmd_vars << "#{var.upcase}=#{value}"
-          ###end
-          ###@aws_environment = s3cmd_vars.join(" ")
-
           @bucket_name = configuration[:aws_releases_bucket]
           raise Capistrano::Error, "Missing configuration[:aws_releases_bucket]" if @bucket_name.nil?
         end
@@ -65,10 +56,6 @@ module Capistrano
         def binding
           super
         end
-
-        ###def aws_environment
-        ###  @aws_environment
-        ###end
 
         def bucket_name
           @bucket_name
